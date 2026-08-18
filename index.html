@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sri Govardhan Silks — Heritage Silk Editorial | Bengaluru</title>
+  <meta name="description" content="Sri Govardhan Silks — Ethical luxury, timeless craftsmanship, and pure South Indian handloom silk. Authentic Kanchipuram bridal weaves, pure zari sarees, and artisanal heirlooms in Yelahanka, Bengaluru.">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sri Govardhan Silks — Heritage Silk Editorial">
+  <meta property="og:description" content="Enter through the world of silk. Ethical luxury, artisanal mastery, and regal elegance woven for generations.">
+  <meta property="og:image" content="src/govardhan silks logo.jpeg">
+  <link rel="canonical" href="https://www.govardhansilks.com/">
+
+  <!-- Google Fonts: Playfair Display & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ CUSTOM LUXURY CURSOR ============ -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- ============ MINIMAL LUXURY PRELOADER ============ -->
+  <div class="loader" id="loader" aria-label="Loading Sri Govardhan Silks experience">
+    <div class="loader-content">
+      <div class="loader-mark">GOVARDHAN SILKS</div>
+      <div class="loader-caption" id="loaderText">Weaving Heritage & Elegance...</div>
+      <div class="loader-track">
+        <div class="loader-fill" id="loaderFill"></div>
+      </div>
+      <span class="loader-pct" id="loaderPct">0%</span>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- =====================================================
+       CINEMATIC SEQUENCE — Pinned Scroll Experience
+       Scenes: Landing Card → Model in Dream World
+       → Eye Zoom → 3D WebGL Silk → Heritage Silk Editorial
+  ====================================================== -->
+  <section class="cinematic-wrapper" id="cinematic" aria-label="Cinematic Royal Silk Experience">
+    
+    <div class="cine-stage" id="cineStage">
+
+      <!-- SCENE 01 — EXACT MATCH LANDING GREETING CARD -->
+      <div class="scene scene-card" id="sceneCard" aria-label="Welcome Landing Page">
+        
+        <!-- Top Ivory Header Bar with Shop Logo & Compact Width -->
+        <header class="card-top-bar">
+          <a href="#hero" class="card-top-brand">
+            <img src="src/govardhan silks logo.jpeg" alt="Sri Govardhan Silks Shop Logo" class="nav-logo-img">
+            <span>Govardhan Silks</span>
+          </a>
+          <nav class="card-top-nav" aria-label="Quick Nav">
+            <a href="#collections">Collections</a>
+            <a href="#craft">The Craft</a>
+            <a href="#story">Our Story</a>
+            <a href="#concierge">Appointments</a>
+          </nav>
+          <div class="card-top-icons">
+            <button class="card-icon-btn" aria-label="Shopping Bag">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            </button>
+            <button class="card-icon-btn" aria-label="Account">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.4-4 4.2-6 7-6s5.6 2 7 6"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Background Image of South Indian Bride -->
+        <div class="card-bg" role="img" aria-label="A South Indian bride draped in a heavy Kanchipuram silk saree with intricate gold zari work"></div>
+        <div class="card-scrim"></div>
+        
+        <!-- Centered Copy & CTA -->
+        <div class="card-frame">
+          <span class="card-eyebrow card-fade delay-0">A HERITAGE OF ELEGANCE</span>
+          <h1 class="card-mark card-fade delay-1">The Legacy of a Thousand<br>Threads</h1>
+          <p class="card-line card-fade delay-2">
+            Crafted with unwavering dedication, each fold tells a story of artisanal mastery and timeless South Indian tradition.
+          </p>
+          <a href="#collections" class="card-cta card-fade delay-3">
+            <span>EXPLORE THE CRAFT</span>
+            <span class="card-cta-arrow">↓</span>
+          </a>
+          <div class="card-scroll-cue card-fade delay-4">
+            <span class="cue-line"></span>
+            <span class="cue-text">Scroll to enter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 02–06 — CENTERED MODEL CANVAS IN DREAM WORLD -->
+      <div class="scene scene-canvas-view" id="sceneCanvasView" aria-hidden="true">
+        
+        <!-- Celestial Dream World Background Layers -->
+        <div class="dream-backdrop"></div>
+        <div class="dream-light-aura"></div>
+        
+        <!-- Floating Dream Clouds & Mist -->
+        <div class="dream-clouds-layer">
+          <div class="dream-cloud cloud-1"></div>
+          <div class="dream-cloud cloud-2"></div>
+          <div class="dream-cloud cloud-3"></div>
+          <div class="dream-cloud cloud-4"></div>
+        </div>
+
+        <!-- High-Performance Crystal Clear Canvas Viewport -->
+        <div class="model-canvas-frame">
+          <canvas class="sequence-canvas" id="sequenceCanvas" aria-label="Royal silk model cinematic camera journey"></canvas>
+          <div class="canvas-soft-feather"></div>
+        </div>
+        
+        <!-- Dream Vignette & Atmospheric White-Gold Shimmer -->
+        <div class="dream-vignette"></div>
+        <div class="silk-sheen-light"></div>
+        
+        <!-- Sparkling Golden Stars & Zari Dust Floating Field -->
+        <div class="sparkles-container" id="sparklesContainer"></div>
+        <div class="particles-layer" id="goldParticles"></div>
+        
+        <!-- Eye Darken Shadow -->
+        <div class="eye-darken" id="eyeDarken"></div>
+
+        <!-- Floating Story Caption -->
+        <div class="journey-overlay-text" id="journeyCaption">
+          <span class="journey-tag">Govardhan Silks</span>
+          <h2 class="journey-title">Enter through silk</h2>
+          <p class="journey-sub">Every thread weaves a thousand years of heritage.</p>
+        </div>
+      </div>
+
+      <!-- SCENE 07 — WEBGL 3D SILK FLOW & EYE EXPANSION PORTAL -->
+      <div class="scene scene-silk-webgl" id="sceneSilkWebGL" aria-hidden="true">
+        <canvas id="silkThreeCanvas" class="silk-three-canvas"></canvas>
+        <div class="silk-golden-glow"></div>
+      </div>
+
+      <!-- EYE PORTAL EXPANSION VEIL -->
+      <div class="eye-portal" id="eyePortal" aria-hidden="true">
+        <div class="eye-portal-inner">
+          <span class="portal-eyebrow">Sri Govardhan Silks</span>
+          <h2 class="portal-headline">Enter Through Silk</h2>
+          <p class="portal-lead">Where centuries of handloom mastery unfold.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll Distance Spacer -->
+    <div class="cine-spacer" id="cineSpacer" aria-hidden="true"></div>
+  </section>
+
+  <!-- =====================================================
+       SCENE 08 — HERITAGE SILK EDITORIAL MAIN WEBSITE
+  ====================================================== -->
+  <div id="main-content" class="main-content-wrapper">
+
+    <!-- ============ EDITORIAL TOP TICKER ============ -->
+    <div class="editorial-ticker">
+      <div class="ticker-inner">
+        <span>100% PURE HANDLOOM SILK MARK CERTIFIED</span>
+        <span class="ticker-dot">•</span>
+        <span>DIRECT WEAVER-TO-CLIENT PRICING</span>
+        <span class="ticker-dot">•</span>
+        <span>WORLDWIDE INSURED EXPRESS DISPATCH</span>
+        <span class="ticker-dot">•</span>
+        <span>VIRTUAL 1-ON-1 BRIDAL VIDEO CONCIERGE</span>
+        <span class="ticker-dot">•</span>
+        <span>VISIT OUR BENGALURU SHOWROOM</span>
+      </div>
+    </div>
+
+    <!-- ============ MAIN EDITORIAL NAVIGATION (REDUCED WIDTH & LOGO) ============ -->
+    <header class="site-nav" id="siteNav">
+      <a href="#hero" class="nav-brand">
+        <img src="src/govardhan silks logo.jpeg" alt="Sri Govardhan Silks Shop Logo" class="nav-logo-img">
+        <div class="nav-brand-text">
+          <span class="nav-brand-logo">GOVARDHAN SILKS</span>
+          <span class="nav-brand-sub">BENGALURU • ESTD. HERITAGE</span>
+        </div>
+      </a>
+      
+      <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
+        <a href="#collections" class="nav-link">Collections</a>
+        <a href="#anatomy" class="nav-link">Saree Guide</a>
+        <a href="#concierge" class="nav-link">Appointments</a>
+        <a href="#craft" class="nav-link">The Craft</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#showroom" class="nav-link">Showroom</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener" class="nav-cta-btn">Visit Store</a>
+        <a href="tel:+917090902843" class="nav-icon-link" aria-label="Call Store">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <button class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <a href="#collections" class="mobile-nav-link">Collections</a>
+        <a href="#anatomy" class="mobile-nav-link">Saree Guide</a>
+        <a href="#concierge" class="mobile-nav-link">Appointments</a>
+        <a href="#craft" class="mobile-nav-link">The Craft</a>
+        <a href="#reviews" class="mobile-nav-link">Reviews</a>
+        <a href="#showroom" class="mobile-nav-link">Showroom</a>
+        <div class="mobile-divider"></div>
+        <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener" class="btn btn-primary btn-full">Get Store Directions</a>
+        <a href="https://wa.me/917090902843" target="_blank" rel="noopener" class="btn btn-ghost btn-full" style="margin-top:12px;">WhatsApp Enquiry</a>
+      </div>
+    </div>
+
+    <!-- ============ EDITORIAL HERO SECTION ============ -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <div class="hero-content reveal-on-scroll">
+          <div class="editorial-seal">
+            <span>SILK MARK</span>
+            <small>CERTIFIED</small>
+          </div>
+          <span class="label-caps hero-badge">ETHICAL LUXURY • SLOW HANDLOOM FASHION</span>
+          <h1 class="display-lg hero-title">The Art of<br>Indian Silk</h1>
+          <p class="body-lg hero-desc">
+            Timeless craftsmanship. Regal elegance. Woven for generations. Enter an authentic sanctuary where pure mulberry threads and metallic gold zari unite under master artisans.
+          </p>
+          <div class="hero-actions">
+            <a href="#collections" class="btn btn-primary">EXPLORE COLLECTIONS</a>
+            <a href="#concierge" class="btn btn-secondary">BOOK VIDEO APPOINTMENT</a>
+            <a href="#showroom" class="btn btn-ghost">VISIT SHOWROOM</a>
+          </div>
+        </div>
+
+        <div class="hero-feature-panel reveal-on-scroll">
+          <div class="hero-editorial-img-frame">
+            <img src="src/2.webp" alt="Govardhan Silks Bridal Kanchipuram Saree" loading="lazy">
+            <div class="hero-editorial-caption">
+              <span class="label-caps">MUHURTHAM SPECIAL</span>
+              <h4>Royal Kanchipuram Heirloom</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gold-hairline-divider"></div>
+    </section>
+
+    <!-- ============ PILLARS OF TRUST (EDITORIAL 4-COLUMN GRID) ============ -->
+    <section class="trust-pillars-section">
+      <div class="trust-pillars-grid reveal-on-scroll">
+        <div class="trust-column">
+          <span class="trust-num">01</span>
+          <span class="label-caps trust-tag">AUTHENTICITY</span>
+          <h3 class="headline-md">100% Silk Mark Certified</h3>
+          <p class="body-md">Guaranteed pure mulberry warp and weft verified by the Silk Board of India with zero synthetic blends.</p>
+        </div>
+
+        <div class="trust-column">
+          <span class="trust-num">02</span>
+          <span class="label-caps trust-tag">HERITAGE</span>
+          <h3 class="headline-md">Pure Zari Craftsmanship</h3>
+          <p class="body-md">Interwoven with authentic metallic silver and gold electroplated zari ribbons that endure for generations.</p>
+        </div>
+
+        <div class="trust-column">
+          <span class="trust-num">03</span>
+          <span class="label-caps trust-tag">TRANSPARENCY</span>
+          <h3 class="headline-md">Direct Weaver Pricing</h3>
+          <p class="body-md">Eliminating multi-tier middlemen margins, connecting discerning patrons directly to master pit-loom weavers.</p>
+        </div>
+
+        <div class="trust-column">
+          <span class="trust-num">04</span>
+          <span class="label-caps trust-tag">CONCIERGE</span>
+          <h3 class="headline-md">1-on-1 Video Shopping</h3>
+          <p class="body-md">Experience personalized HD showroom tours and saree drape demonstrations from anywhere in the world.</p>
+        </div>
+      </div>
+      <div class="gold-hairline-divider"></div>
+    </section>
+
+    <!-- ============ EDITORIAL LOOKBOOK & WEAVE FILTERS ============ -->
+    <section class="collections-section" id="collections">
+      <div class="section-header reveal-on-scroll">
+        <span class="label-caps section-tag">CURATED LOOKBOOK</span>
+        <h2 class="display-lg section-title">Woven for Ceremony, Memory & Grace</h2>
+        <p class="body-lg section-desc">Each piece is individually handwoven on traditional pit looms, capturing the soul of South Indian textile mastery.</p>
+      </div>
+
+      <!-- Editorial Filter Bar -->
+      <div class="editorial-filter-wrapper reveal-on-scroll">
+        <div class="editorial-filter-tabs" role="tablist">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">ALL MASTERPIECES</button>
+          <button class="filter-btn" data-filter="bridal" role="tab" aria-selected="false">BRIDAL & WEDDING</button>
+          <button class="filter-btn" data-filter="traditional" role="tab" aria-selected="false">PURE KANCHIPURAM</button>
+          <button class="filter-btn" data-filter="handcrafted" role="tab" aria-selected="false">HANDCRAFTED ART</button>
+          <button class="filter-btn" data-filter="festive" role="tab" aria-selected="false">FESTIVE & TEMPLE</button>
+          <button class="filter-btn" data-filter="contemporary" role="tab" aria-selected="false">CONTEMPORARY</button>
+        </div>
+      </div>
+
+      <div class="collection-grid" id="collectionGrid">
+        <!-- Card 1: Pure Silk Sarees -->
+        <article class="editorial-card reveal-on-scroll" data-category="traditional" data-tilt data-saree-img="src/1.webp" data-saree-title="Pure Silk Sarees" data-saree-desc="Handloom silk in its purest expression. Featuring intricate gold borders, dual-tone magenta & emerald body with hand-rolled selvages.">
+          <div class="card-media-box">
+            <img src="src/1.webp" alt="Pure Silk Saree in deep magenta and green with gold zari stripes" loading="lazy">
+            <span class="card-seal">SILK MARK</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">SIGNATURE WEAVE</span>
+            <h3 class="headline-md card-heading">Pure Silk Sarees</h3>
+            <p class="body-md card-summary">Rich texture, restrained sheen, and a natural drape that speaks softly of quiet royal prestige.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Bridal Wedding Collection -->
+        <article class="editorial-card reveal-on-scroll" data-category="bridal" data-tilt data-saree-img="src/2.webp" data-saree-title="Wedding Collection" data-saree-desc="Ceremonial Kanchipuram bridal drapes with heavy gold zari pallu, peacock motifs, and enduring auspicious hues.">
+          <div class="card-media-box">
+            <img src="src/2.webp" alt="Bridal silk saree with rich antique gold zari borders" loading="lazy">
+            <span class="card-seal">HEIRLOOM</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">MUHURTHAM SPECIAL</span>
+            <h3 class="headline-md card-heading">Wedding Collection</h3>
+            <p class="body-md card-summary">Zari-laden drapes crafted for the day that demands nothing less than uncompromising artisanal perfection.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Traditional Kanchipuram -->
+        <article class="editorial-card reveal-on-scroll" data-category="traditional" data-tilt data-saree-img="src/3.webp" data-saree-title="Traditional Kanchipuram" data-saree-desc="Authentic pit-loom Kanjeevaram weaves with traditional temple borders, mango motifs, and pure mulberry silk strength.">
+          <div class="card-media-box">
+            <img src="src/3.webp" alt="Traditional South Indian silk saree with rich pallu" loading="lazy">
+            <span class="card-seal">PIT LOOM</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">HERITAGE WEAVE</span>
+            <h3 class="headline-md card-heading">Traditional Kanchipuram</h3>
+            <p class="body-md card-summary">Temple motifs carried forward through centuries of revered South Indian weaving dynasties.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Handcrafted Sarees -->
+        <article class="editorial-card reveal-on-scroll" data-category="handcrafted" data-tilt data-saree-img="src/silk5.jpeg" data-saree-title="Handcrafted Artistry" data-saree-desc="Master artisan hand-painted peacock and kalamkari inspired motifs on raw tussar and mulberry silk blends.">
+          <div class="card-media-box">
+            <img src="src/silk5.jpeg" alt="Handcrafted silk saree with intricate peacock artwork" loading="lazy">
+            <span class="card-seal">ARTISANAL</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">HANDPAINTED ART</span>
+            <h3 class="headline-md card-heading">Handcrafted Sarees</h3>
+            <p class="body-md card-summary">Every single motif carries the irreplaceable, patient brushwork and hand of dedicated master craftsmen.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Festive Collection -->
+        <article class="editorial-card reveal-on-scroll" data-category="festive" data-tilt data-saree-img="src/4.webp" data-saree-title="Festive Collection" data-saree-desc="Luminous festive silks in vibrant ruby, royal blue, and marigold with striking gold borders for joy and celebration.">
+          <div class="card-media-box">
+            <img src="src/4.webp" alt="Festive silk saree in bright vibrant jewel tones" loading="lazy">
+            <span class="card-seal">FESTIVE</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">CELEBRATION EDIT</span>
+            <h3 class="headline-md card-heading">Festive Collection</h3>
+            <p class="body-md card-summary">Luminous jewel tones and shimmering gold zari borders designed to illuminate auspicious family celebrations.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: Contemporary Silk -->
+        <article class="editorial-card reveal-on-scroll" data-category="contemporary" data-tilt data-saree-img="src/14.webp" data-saree-title="Contemporary Silk" data-saree-desc="Modern minimal palettes, geometric zari borders, and lightweight drapes crafted for cocktail receptions and modern events.">
+          <div class="card-media-box">
+            <img src="src/14.webp" alt="Contemporary luxury silk saree with modern styling" loading="lazy">
+            <span class="card-seal">MODERN</span>
+          </div>
+          <div class="card-info">
+            <span class="label-caps card-cat">EDITORIAL SILHOUETTE</span>
+            <h3 class="headline-md card-heading">Contemporary Silk</h3>
+            <p class="body-md card-summary">Refined minimalist palettes paired with traditional pure silk luster, tailored for a contemporary generation.</p>
+            <div class="card-footer-row">
+              <span class="card-link">VIEW MASTERPIECE ↗</span>
+              <span class="card-price-tag">INQUIRE</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ THE ANATOMY OF PURE SILK (EDITORIAL GUIDE) ============ -->
+    <section class="anatomy-section" id="anatomy">
+      <div class="section-header reveal-on-scroll">
+        <span class="label-caps section-tag">TEXTILE CONNOISSEURSHIP</span>
+        <h2 class="display-lg section-title">The Anatomy of Pure Handloom Silk</h2>
+        <p class="body-lg section-desc">Learn the discerning markers of genuine South Indian heritage weaving versus machine-printed imitations.</p>
+      </div>
+
+      <div class="anatomy-grid reveal-on-scroll">
+        <div class="anatomy-card">
+          <div class="anatomy-header">
+            <span class="anatomy-idx">01</span>
+            <span class="label-caps anatomy-sub">THE CROWN</span>
+          </div>
+          <h3 class="headline-md">The Royal Pallu (Thalappu)</h3>
+          <p class="body-md">The grand climax of the saree, densely woven with solid metallic zari, floral vines (kodi visiri), and sacred motifs.</p>
+          <div class="anatomy-divider"></div>
+          <span class="label-caps anatomy-badge">HEAVY ZARI INLAY</span>
+        </div>
+
+        <div class="anatomy-card">
+          <div class="anatomy-header">
+            <span class="anatomy-idx">02</span>
+            <span class="label-caps anatomy-sub">INTERLOCKED JOIN</span>
+          </div>
+          <h3 class="headline-md">The Korvai Temple Border</h3>
+          <p class="body-md">Interlocked by two master weavers simultaneously using the ancient korvai pit-loom join with triangle temple spires.</p>
+          <div class="anatomy-divider"></div>
+          <span class="label-caps anatomy-badge">GENUINE KORVAI WEAVE</span>
+        </div>
+
+        <div class="anatomy-card">
+          <div class="anatomy-header">
+            <span class="anatomy-idx">03</span>
+            <span class="label-caps anatomy-sub">PURE RAW FIBER</span>
+          </div>
+          <h3 class="headline-md">Mulberry Body (Udal)</h3>
+          <p class="body-md">High-twist 3-ply mulberry silk yarns imparting the signature weighty, fluid drape and deep natural sheen under light.</p>
+          <div class="anatomy-divider"></div>
+          <span class="label-caps anatomy-badge">SILK MARK CERTIFIED</span>
+        </div>
+
+        <div class="anatomy-card">
+          <div class="anatomy-header">
+            <span class="anatomy-idx">04</span>
+            <span class="label-caps anatomy-sub">ENDURING FINISH</span>
+          </div>
+          <h3 class="headline-md">Hand-Rolled Selvage</h3>
+          <p class="body-md">Reinforced selvage boundaries finished thread-by-thread to ensure the drape resists fraying for decades.</p>
+          <div class="anatomy-divider"></div>
+          <span class="label-caps anatomy-badge">HEIRLOOM DURABILITY</span>
+        </div>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ VIRTUAL BRIDAL CONCIERGE LOUNGE ============ -->
+    <section class="concierge-section" id="concierge">
+      <div class="concierge-box reveal-on-scroll">
+        <div class="concierge-left">
+          <span class="label-caps" style="color:var(--secondary);">VIP BRIDAL SERVICE</span>
+          <h2 class="display-lg concierge-title">Live 1-on-1 Video Shopping Consultation</h2>
+          <p class="body-lg concierge-desc">
+            Unable to visit Bengaluru in person? Book an exclusive private video consultation directly with our master drapers. Inspect real-time zari reflections, drape behavior, and color matching under natural light.
+          </p>
+          <div class="concierge-checklist">
+            <div class="check-item"><span class="check-icon">✓</span> <span>High-Definition live saree drape demonstration</span></div>
+            <div class="check-item"><span class="check-icon">✓</span> <span>Custom color & wedding jewelry theme matching</span></div>
+            <div class="check-item"><span class="check-icon">✓</span> <span>Worldwide insured courier dispatch with tracking</span></div>
+            <div class="check-item"><span class="check-icon">✓</span> <span>Dedicated personal bridal stylist guidance</span></div>
+          </div>
+          <div class="concierge-actions">
+            <button class="btn btn-primary" id="openVideoBookingBtn">BOOK VIRTUAL APPOINTMENT</button>
+            <a href="https://wa.me/917090902843?text=Hello%20Govardhan%20Silks,%20I%20would%20like%20to%20schedule%20a%20Video%20Shopping%20call." target="_blank" rel="noopener" class="btn btn-secondary">WHATSAPP DIRECT</a>
+          </div>
+        </div>
+
+        <div class="concierge-right">
+          <div class="concierge-img-frame">
+            <img src="src/shop inner view.jpeg" alt="Sri Govardhan Silks Showroom Video Shopping Lounge" loading="lazy">
+            <div class="concierge-stamp">
+              <span class="stamp-dot"></span>
+              <span class="label-caps">LIVE SHOWROOM CONCIERGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ ARTISANAL CRAFTSMANSHIP ("FROM THREAD TO MASTERPIECE") ============ -->
+    <section class="craft-section" id="craft">
+      <div class="section-header reveal-on-scroll">
+        <span class="label-caps section-tag">THE ARTISANAL JOURNEY</span>
+        <h2 class="display-lg section-title">From Thread to Masterpiece</h2>
+        <p class="body-lg section-desc">The sacred 5-stage transformation of raw South Indian mulberry silk into an enduring family heirloom.</p>
+      </div>
+
+      <div class="craft-grid reveal-on-scroll">
+        <div class="craft-step">
+          <span class="craft-step-num">01</span>
+          <span class="label-caps craft-phase">PHASE I</span>
+          <h3 class="headline-md">Mulberry Silk</h3>
+          <p class="body-md">Hand-selected high-twist mulberry silk yarns chosen for natural tensile strength, unbroken filament length, and pure luster.</p>
+        </div>
+
+        <div class="craft-step">
+          <span class="craft-step-num">02</span>
+          <span class="label-caps craft-phase">PHASE II</span>
+          <h3 class="headline-md">Natural Dyeing</h3>
+          <p class="body-md">Vibrant botanical and mineral pigments drawn slowly into individual yarn baths by hand, ensuring depth that defies fading.</p>
+        </div>
+
+        <div class="craft-step">
+          <span class="craft-step-num">03</span>
+          <span class="label-caps craft-phase">PHASE III</span>
+          <h3 class="headline-md">Pit Loom Weaving</h3>
+          <p class="body-md">Interlacing warp and weft on traditional wooden pit looms with precision foot-pedal rhythm, taking up to 20 days per saree.</p>
+        </div>
+
+        <div class="craft-step">
+          <span class="craft-step-num">04</span>
+          <span class="label-caps craft-phase">PHASE IV</span>
+          <h3 class="headline-md">Pure Zari Inlay</h3>
+          <p class="body-md">Intricate gold and silver metallic ribbons worked meticulously into borders and pallus using traditional jacquard punch cards.</p>
+        </div>
+
+        <div class="craft-step">
+          <span class="craft-step-num">05</span>
+          <span class="label-caps craft-phase">PHASE V</span>
+          <h3 class="headline-md">Artisanal Finish</h3>
+          <p class="body-md">Thread-by-thread inspection, hand-steam pressing, and museum-grade folding ready for your most sacred occasions.</p>
+        </div>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ GOOGLE REVIEWS & PATRON TESTIMONIALS ============ -->
+    <section class="reviews-section" id="reviews">
+      <div class="section-header reveal-on-scroll">
+        <span class="label-caps section-tag">PATRON EXPERIENCES</span>
+        <h2 class="display-lg section-title">Voices of Royal Brides & Patrons</h2>
+        
+        <div class="google-badge-box">
+          <span class="google-g">G</span>
+          <span class="stars">★★★★★</span>
+          <strong class="rating-txt">5.0 Star Rating</strong>
+          <span class="rating-sub">• Verified Google Reviews (Bengaluru)</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid reveal-on-scroll">
+        <!-- Review 1 -->
+        <div class="review-box" data-tilt>
+          <div class="review-head">
+            <div class="review-avatar">AR</div>
+            <div class="review-meta">
+              <strong>Ananya Ramachandran</strong>
+              <span class="label-caps">BRIDAL PATRON • BENGALURU</span>
+            </div>
+            <span class="review-star-row">★★★★★</span>
+          </div>
+          <p class="body-md review-quote">
+            "The bridal Kanchipuram saree I bought from Govardhan Silks for my wedding in Bengaluru received endless compliments. The pure gold zari and soft drape is on par with the highest luxury fashion houses!"
+          </p>
+          <div class="review-foot">
+            <span class="label-caps verified-tag">✓ VERIFIED GOOGLE REVIEW</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-box" data-tilt>
+          <div class="review-head">
+            <div class="review-avatar">SG</div>
+            <div class="review-meta">
+              <strong>Suresh & Deepa Gowda</strong>
+              <span class="label-caps">WEDDING SHOPPING • YELAHANKA</span>
+            </div>
+            <span class="review-star-row">★★★★★</span>
+          </div>
+          <p class="body-md review-quote">
+            "Direct manufacturer pricing with genuine Silk Mark purity. The staff at Kattigenahalli showroom showed us over 50 unique weaves with utmost patience. Highly recommended for wedding shopping."
+          </p>
+          <div class="review-foot">
+            <span class="label-caps verified-tag">✓ VERIFIED GOOGLE REVIEW</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-box" data-tilt>
+          <div class="review-head">
+            <div class="review-avatar">PV</div>
+            <div class="review-meta">
+              <strong>Priyanka Varma</strong>
+              <span class="label-caps">HANDLOOM COLLECTOR • BENGALURU</span>
+            </div>
+            <span class="review-star-row">★★★★★</span>
+          </div>
+          <p class="body-md review-quote">
+            "Their handcrafted peacock and kalamkari inspired sarees are pure works of art. The luster of the mulberry silk and the antique zari finish is unmatched. True authenticity without middlemen."
+          </p>
+          <div class="review-foot">
+            <span class="label-caps verified-tag">✓ VERIFIED GOOGLE REVIEW</span>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="review-box" data-tilt>
+          <div class="review-head">
+            <div class="review-avatar">MK</div>
+            <div class="review-meta">
+              <strong>Meera Krishnan</strong>
+              <span class="label-caps">VIRTUAL CLIENT • CHENNAI</span>
+            </div>
+            <span class="review-star-row">★★★★★</span>
+          </div>
+          <p class="body-md review-quote">
+            "We booked a live video call consultation from Chennai. The master draper showcased the fabric sheen under natural light. The saree arrived in 2 days in luxurious royal packaging. Exceptional experience!"
+          </p>
+          <div class="review-foot">
+            <span class="label-caps verified-tag">✓ VERIFIED VIDEO CLIENT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-cta-wrap reveal-on-scroll">
+        <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener" class="btn btn-secondary">
+          READ ALL REVIEWS ON GOOGLE MAPS ↗
+        </a>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ BRAND STORY ============ -->
+    <section class="story-section" id="story">
+      <div class="story-container reveal-on-scroll">
+        <div class="story-insignia">
+          <img src="src/govardhan silks logo.jpeg" alt="Sri Govardhan Silks Royal Brand Insignia" class="story-logo-img" loading="lazy">
+        </div>
+        <span class="label-caps section-tag">OUR HERITAGE</span>
+        <h2 class="display-lg story-headline">Heritage, Woven Forward</h2>
+        <div class="story-content">
+          <p class="body-lg">
+            Rooted in the timeless weaving heritage of South India, <strong>Sri Govardhan Silks</strong> is a celebrated silk saree manufacturer and boutique located at Kattigenahalli, Yelahanka, Bengaluru.
+          </p>
+          <p class="body-lg">
+            We believe that a pure silk saree is never just fabric—it is an heirloom of devotion, a sanctuary of handloom culture, and an enduring symbol of grace passed from mother to daughter. Every saree in our showroom is directly sourced from master weavers, preserving authentic craftsmanship without compromise.
+          </p>
+        </div>
+      </div>
+      <div class="gold-hairline-divider" style="margin-top:100px;"></div>
+    </section>
+
+    <!-- ============ SHOWROOM DESTINATION ============ -->
+    <section class="showroom-section" id="showroom">
+      <div class="section-header reveal-on-scroll">
+        <span class="label-caps section-tag">EXPERIENCE IN PERSON</span>
+        <h2 class="display-lg section-title">Visit the Bengaluru Showroom</h2>
+        <p class="body-lg section-desc">Touch pure silk, feel the substantial fall of metallic zari, and experience warm South Indian hospitality.</p>
+      </div>
+
+      <div class="showroom-grid">
+        <!-- Left: Showroom Info -->
+        <div class="showroom-info-panel reveal-on-scroll">
+          <div class="showroom-gallery">
+            <div class="gallery-item main-view">
+              <img src="src/shop front view.jpeg" alt="Sri Govardhan Silks storefront in Bengaluru" loading="lazy">
+              <span class="label-caps gallery-tag">SHOWROOM ENTRANCE</span>
+            </div>
+            <div class="gallery-item sub-view">
+              <img src="src/shop inner view.jpeg" alt="Interior view of Sri Govardhan Silks showroom" loading="lazy">
+              <span class="label-caps gallery-tag">BOUTIQUE INTERIOR</span>
+            </div>
+          </div>
+
+          <div class="showroom-details-box">
+            <div class="detail-item">
+              <span class="detail-ico">📍</span>
+              <div>
+                <span class="label-caps detail-lbl">LOCATION & ADDRESS</span>
+                <p class="body-md">Sri Govardhan Silks, Kattigenahalli, Yelahanka, Bengaluru, Karnataka, India</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="detail-ico">📞</span>
+              <div>
+                <span class="label-caps detail-lbl">DIRECT SHOWROOM CONTACT</span>
+                <p class="body-md">
+                  <a href="tel:+917090902843" class="phone-link">+91 70909 02843</a> &nbsp;•&nbsp; 
+                  <a href="tel:+918342258497" class="phone-link">+91 83422 58497</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="detail-ico">🕒</span>
+              <div>
+                <span class="label-caps detail-lbl">SHOWROOM HOURS</span>
+                <p class="body-md">Monday – Sunday: 10:00 AM – 9:00 PM (Open All Days for Bridal Appointments)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="showroom-action-row">
+            <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener" class="btn btn-primary">
+              GET GOOGLE MAPS DIRECTIONS ↗
+            </a>
+            <a href="https://wa.me/917090902843?text=Hello%20Govardhan%20Silks,%20I%20would%20like%20to%20enquire%20about%20your%20silk%20saree%20collections." target="_blank" rel="noopener" class="btn btn-secondary">
+              WHATSAPP US
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Map Embed -->
+        <div class="showroom-map-panel reveal-on-scroll">
+          <iframe
+            title="Sri Govardhan Silks location on Google Maps"
+            src="https://maps.google.com/maps?q=Sri+Govardhan+Silks+Kattigenahalli+Yelahanka+Bengaluru&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div class="map-tag-badge">
+            <span class="tag-dot"></span>
+            <span class="label-caps">SRI GOVARDHAN SILKS • YELAHANKA, BENGALURU</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer" id="contact">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand-block">
+            <span class="footer-brand-title">GOVARDHAN SILKS</span>
+            <p class="body-md footer-brand-desc">Master silk manufacturers & pure handloom bridal saree destination. Kattigenahalli, Yelahanka, Bengaluru.</p>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Footer Navigation">
+            <a href="#collections">Collections</a>
+            <a href="#anatomy">Saree Guide</a>
+            <a href="#concierge">Appointments</a>
+            <a href="#craft">The Craft</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#showroom">Showroom</a>
+            <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener">Google Maps</a>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <span class="copyright">© <span id="year"></span> Sri Govardhan Silks. All rights reserved.</span>
+          <div class="footer-links">
+            <a href="https://maps.app.goo.gl/KQdx7ssoaVRoZNc49" target="_blank" rel="noopener">Find us in Bengaluru ↗</a>
+            <a href="https://wa.me/917090902843" target="_blank" rel="noopener">WhatsApp Concierge</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /#main-content -->
+
+  <!-- ============ SAREE LIGHTBOX MODAL ============ -->
+  <div class="saree-modal" id="sareeModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card editorial-modal">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
+      <div class="modal-grid">
+        <div class="modal-img-wrap">
+          <img src="" alt="" id="modalImg" class="modal-saree-img">
+        </div>
+        <div class="modal-body">
+          <span class="label-caps modal-tag">GOVARDHAN SILKS MASTERPIECE</span>
+          <h3 id="modalTitle" class="display-lg modal-title"></h3>
+          <p id="modalDesc" class="body-md modal-desc"></p>
+          <div class="modal-features">
+            <div class="modal-feature">✓ 100% Pure Handloom Silk Mark Certified</div>
+            <div class="modal-feature">✓ Authentic Metallic Gold Zari Weave</div>
+            <div class="modal-feature">✓ Direct-from-Manufacturer Pricing</div>
+            <div class="modal-feature">✓ Worldwide Insured Express Shipping Available</div>
+          </div>
+          <div class="modal-actions">
+            <a href="#" id="modalWhatsAppBtn" target="_blank" rel="noopener" class="btn btn-primary btn-full">
+              ENQUIRE ON WHATSAPP
+            </a>
+            <button id="modalBookVideoBtn" class="btn btn-secondary btn-full" style="margin-top:10px;">
+              BOOK 1-ON-1 VIDEO CALL
+            </button>
+            <a href="tel:+917090902843" class="btn btn-ghost btn-full" style="margin-top:10px;">
+              CALL SHOWROOM DIRECT
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ VIRTUAL VIDEO SHOPPING BOOKING MODAL ============ -->
+  <div class="saree-modal" id="videoBookingModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <div class="modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="modal-card editorial-modal video-modal-card">
+      <button class="modal-close" id="videoModalClose" aria-label="Close booking modal">✕</button>
+      <div class="video-modal-body">
+        <span class="label-caps modal-tag">VIP BRIDAL SERVICE</span>
+        <h3 id="videoModalTitle" class="display-lg modal-title">Schedule a Live Video Showroom Tour</h3>
+        <p class="body-md modal-desc">Connect directly with our master saree draper in Bengaluru via WhatsApp Video or Google Meet for an exclusive live demonstration.</p>
+        
+        <form id="videoBookingForm" class="booking-form">
+          <div class="form-group">
+            <label for="clientName" class="label-caps">YOUR NAME</label>
+            <input type="text" id="clientName" required placeholder="e.g. Ananya Sharma" class="editorial-input">
+          </div>
+          <div class="form-group">
+            <label for="clientPhone" class="label-caps">WHATSAPP NUMBER</label>
+            <input type="tel" id="clientPhone" required placeholder="+91 98765 43210" class="editorial-input">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="callDate" class="label-caps">PREFERRED DATE</label>
+              <input type="date" id="callDate" required class="editorial-input">
+            </div>
+            <div class="form-group">
+              <label for="callTime" class="label-caps">PREFERRED TIME</label>
+              <select id="callTime" class="editorial-input">
+                <option value="11:00 AM">11:00 AM - 12:00 PM</option>
+                <option value="02:00 PM">02:00 PM - 03:00 PM</option>
+                <option value="04:00 PM">04:00 PM - 05:00 PM</option>
+                <option value="06:00 PM">06:00 PM - 07:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" style="margin-top:20px;">
+            CONFIRM APPOINTMENT VIA WHATSAPP ↗
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dependencies: GSAP 3.12.5, ScrollTrigger, Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
