@@ -1,27 +1,36 @@
 /* ============================================================
    SRI GOVARDHAN SILKS — MASTER DIGITAL EXPERIENCE SCRIPT
-   - 100-Frame High-DPI Centered Model Canvas Engine
-   - Ethereal Dream World Atmosphere (White Shades, Clouds, Sparkles)
-   - GSAP ScrollTrigger Pinned Camera Flow
-   - Three.js WebGL 3D Silk Simulation & Gold Dust Field
-   - Heritage Silk Editorial Interactivity & Weave Filtering
-   - Saree Lightbox Modal & VIP Video Shopping Booking Modal
+   - 812-Frame Full-HD High-DPI Sequence Engine (0to10, 10to20, 20to27)
+   - Batched Hardware-Accelerated Preload with Progressive Decoding
+   - Silky-Smooth GSAP ScrollTrigger Pinned Scrubbing
+   - Ethereal Gold Zari Particles & Atmospheric Lighting
+   - Lookbook Category Filter, Saree Lightbox Modal & VIP Video Concierge
+   - Custom Luxury Cursor & Mobile Navigation
 ============================================================ */
 
 (() => {
   "use strict";
 
   /* ============================================================
-     1. CONSTANTS & CONFIGURATION
+     1. FRAME SEQUENCE CONFIGURATION (812 FRAMES)
   ============================================================ */
-  const CONFIG = {
-    frameCount: 100,
-    frameDir: "ezgif-red frames-100-jpg",
-    framePattern: (i) => `ezgif-red frames-100-jpg/ezgif-frame-${String(i).padStart(3, "0")}.jpg`,
-    eyeNormalizedX: 0.49,    // Model eye position in frame
-    eyeNormalizedY: 0.355,   // Model eye position in frame
-    scrollDistance: "520%"
-  };
+  const FRAME_SOURCES = [];
+
+  // 0to10: 300 frames
+  for (let i = 1; i <= 300; i++) {
+    FRAME_SOURCES.push(`scroll-animations/0to10/ezgif-frame-${String(i).padStart(3, "0")}.jpg`);
+  }
+  // 10to20: 300 frames
+  for (let i = 1; i <= 300; i++) {
+    FRAME_SOURCES.push(`scroll-animations/10to20/ezgif-frame-${String(i).padStart(3, "0")}.jpg`);
+  }
+  // 20to27: 212 frames
+  for (let i = 1; i <= 212; i++) {
+    FRAME_SOURCES.push(`scroll-animations/20to27/ezgif-frame-${String(i).padStart(3, "0")}.jpg`);
+  }
+
+  const TOTAL_FRAMES = FRAME_SOURCES.length; // 812 frames
+  const SCROLL_DISTANCE = window.innerWidth < 768 ? "280%" : "340%";
 
   const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
@@ -42,8 +51,8 @@
   const particlesLayer = $("goldParticles");
   const sparklesContainer = $("sparklesContainer");
   const journeyCaption = $("journeyCaption");
-  const sceneSilkWebGL = $("sceneSilkWebGL");
-  const eyePortal = $("eyePortal");
+  const sceneKorvaiOverlay = $("sceneKorvaiOverlay");
+  const sceneZariOverlay = $("sceneZariOverlay");
   const navBurger = $("navBurger");
   const mobileMenu = $("mobileMenu");
   const yearEl = $("year");
@@ -51,41 +60,32 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ============================================================
-     2. STATE MANAGEMENT
+     2. ENGINE STATE
   ============================================================ */
   const state = {
-    loadedFrames: 0,
-    images: [],
+    images: new Array(TOTAL_FRAMES),
+    loadedCount: 0,
     currentFrame: 0,
     lastDrawnFrame: -1,
     progress: 0,
     isReady: false,
-    eyeScreenX: 0.5,
-    eyeScreenY: 0.36,
     rafId: 0
   };
 
-  /* Set Dynamic Eye CSS Variables for Overlay Alignment */
-  function updateEyeVars(x, y) {
-    const root = document.documentElement.style;
-    root.setProperty("--eye-x", `${(x * 100).toFixed(2)}%`);
-    root.setProperty("--eye-y", `${(y * 100).toFixed(2)}%`);
-  }
-  updateEyeVars(state.eyeScreenX, state.eyeScreenY);
-
   /* ============================================================
-     3. DREAM WORLD GOLDEN SPARKLES & PARTICLES GENERATION
+     3. GOLDEN SPARKLES & AMBIENT PARTICLES
   ============================================================ */
-  const SPARKLE_COUNT = window.innerWidth < 768 ? 16 : 32;
+  const SPARKLE_COUNT = window.innerWidth < 768 ? 14 : 28;
   const sparkleElements = [];
 
   if (sparklesContainer) {
+    sparklesContainer.innerHTML = "";
     for (let i = 0; i < SPARKLE_COUNT; i++) {
       const sp = document.createElement("div");
       sp.className = "golden-sparkle";
       sp.innerHTML = '<div class="sparkle-cross"></div>';
 
-      const scale = (0.5 + Math.random() * 0.9).toFixed(2);
+      const scale = (0.45 + Math.random() * 0.85).toFixed(2);
       const posX = (5 + Math.random() * 90).toFixed(1);
       const posY = (10 + Math.random() * 80).toFixed(1);
 
@@ -99,20 +99,21 @@
       sparkleElements.push({
         el: sp,
         baseScale: parseFloat(scale),
-        speed: 1.5 + Math.random() * 2.5,
+        speed: 1.6 + Math.random() * 2.4,
         delay: Math.random() * 3
       });
     }
   }
 
   // Floating Zari Dust Particles Layer
-  const DOM_PARTICLE_COUNT = window.innerWidth < 768 ? 22 : 48;
+  const DOM_PARTICLE_COUNT = window.innerWidth < 768 ? 18 : 36;
   const domParticles = [];
   if (particlesLayer) {
+    particlesLayer.innerHTML = "";
     for (let i = 0; i < DOM_PARTICLE_COUNT; i++) {
       const p = document.createElement("div");
       p.className = "gold-particle";
-      const size = (2.5 + Math.random() * 4.5).toFixed(1);
+      const size = (2.2 + Math.random() * 3.8).toFixed(1);
       Object.assign(p.style, {
         width: `${size}px`,
         height: `${size}px`,
@@ -125,7 +126,7 @@
   }
 
   /* ============================================================
-     4. HIGH-DPI CENTERED CANVAS RENDER ENGINE
+     4. HIGH-DPI CANVAS RENDER ENGINE WITH COVER MATH
   ============================================================ */
   function resizeSequenceCanvas() {
     if (!canvas || !ctx) return;
@@ -142,48 +143,40 @@
     requestCanvasDraw(true);
   }
 
+  // Find nearest loaded frame if current frame is still decoding
+  function getRenderableFrame(targetIndex) {
+    if (state.images[targetIndex]) return state.images[targetIndex];
+    // Search outward for nearest loaded neighbor
+    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+      const prev = targetIndex - offset;
+      if (prev >= 0 && state.images[prev]) return state.images[prev];
+      const next = targetIndex + offset;
+      if (next < TOTAL_FRAMES && state.images[next]) return state.images[next];
+    }
+    return null;
+  }
+
   function drawSequenceFrame(img) {
-    if (!ctx || !canvas) return;
+    if (!ctx || !canvas || !img) return;
     const cw = canvas.width;
     const ch = canvas.height;
-    const iw = img.naturalWidth || img.width;
-    const ih = img.naturalHeight || img.height;
+    const iw = img.naturalWidth || img.width || 1920;
+    const ih = img.naturalHeight || img.height || 1080;
 
-    const isMobile = window.innerWidth < 768;
-    const maxViewportRatioW = isMobile ? 0.98 : 0.88;
-    const maxViewportRatioH = isMobile ? 0.96 : 0.92;
-
-    const scale = Math.min((cw * maxViewportRatioW) / iw, (ch * maxViewportRatioH) / ih);
+    // Aspect-ratio cover calculation
+    const scale = Math.max(cw / iw, ch / ih);
     const dw = Math.round(iw * scale);
     const dh = Math.round(ih * scale);
 
     const dx = Math.round((cw - dw) * 0.5);
     const dy = Math.round((ch - dh) * 0.5);
 
-    const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.48, dw * 0.2, cw * 0.5, ch * 0.48, Math.max(cw, ch) * 0.7);
-    bgGrad.addColorStop(0, "#1f1218");
-    bgGrad.addColorStop(0.5, "#120c0e");
-    bgGrad.addColorStop(1, "#080605");
-    ctx.fillStyle = bgGrad;
+    // Deep ink background fill
+    ctx.fillStyle = "#100c09";
     ctx.fillRect(0, 0, cw, ch);
 
+    // Draw active animation frame
     ctx.drawImage(img, dx, dy, dw, dh);
-
-    const featherGrad = ctx.createRadialGradient(
-      cw * 0.5, ch * 0.5,
-      Math.min(dw, dh) * 0.44,
-      cw * 0.5, ch * 0.5,
-      Math.max(dw, dh) * 0.65
-    );
-    featherGrad.addColorStop(0, "rgba(8, 6, 5, 0)");
-    featherGrad.addColorStop(0.7, "rgba(8, 6, 5, 0.25)");
-    featherGrad.addColorStop(1, "rgba(8, 6, 5, 0.95)");
-    ctx.fillStyle = featherGrad;
-    ctx.fillRect(0, 0, cw, ch);
-
-    state.eyeScreenX = Math.max(0, Math.min(1, (dx + dw * CONFIG.eyeNormalizedX) / cw));
-    state.eyeScreenY = Math.max(0, Math.min(1, (dy + dh * CONFIG.eyeNormalizedY) / ch));
-    updateEyeVars(state.eyeScreenX, state.eyeScreenY);
   }
 
   function drawFallbackGradient() {
@@ -200,14 +193,14 @@
 
   function renderCanvas() {
     state.rafId = 0;
-    if (!state.isReady || !state.images[state.currentFrame]) {
+    const img = getRenderableFrame(state.currentFrame);
+    if (!img) {
       drawFallbackGradient();
       return;
     }
     if (state.lastDrawnFrame === state.currentFrame) return;
     state.lastDrawnFrame = state.currentFrame;
-
-    drawSequenceFrame(state.images[state.currentFrame]);
+    drawSequenceFrame(img);
   }
 
   function requestCanvasDraw(force) {
@@ -216,7 +209,7 @@
   }
 
   /* ============================================================
-     5. ASYNC FRAME PRELOADER
+     5. HIGH-SPEED BATCHED PRELOADER WITH HARDWARE DECODE
   ============================================================ */
   function updatePreloader(loaded, total) {
     const pct = Math.min(100, Math.round((loaded / total) * 100));
@@ -233,227 +226,257 @@
           if (img.decode) await img.decode();
         } catch (_) {}
         state.images[index] = img;
-        state.loadedFrames++;
-        updatePreloader(state.loadedFrames, CONFIG.frameCount);
+        state.loadedCount++;
+        updatePreloader(state.loadedCount, TOTAL_FRAMES);
         if (index === 0) requestCanvasDraw(true);
         resolve();
       };
       img.onerror = () => {
-        state.loadedFrames++;
-        updatePreloader(state.loadedFrames, CONFIG.frameCount);
+        state.loadedCount++;
+        updatePreloader(state.loadedCount, TOTAL_FRAMES);
         resolve();
       };
       img.src = encodeURI(src);
     });
   }
 
+  // Preload in two efficient tiers:
+  // Tier 1: Immediate Keyframes (every 6th frame) for instant scrubbing + 1st frame
+  // Tier 2: Remaining in-between frames in concurrent background batches
   async function preloadFrameSequence() {
-    updatePreloader(0, CONFIG.frameCount);
-    const loadPromises = [];
-    for (let i = 1; i <= CONFIG.frameCount; i++) {
-      loadPromises.push(loadSingleFrame(CONFIG.framePattern(i), i - 1));
+    updatePreloader(0, TOTAL_FRAMES);
+
+    // Step 1: Load the very first frame immediately
+    await loadSingleFrame(FRAME_SOURCES[0], 0);
+    state.isReady = true;
+    requestCanvasDraw(true);
+
+    // Step 2: Load keyframe stride (every 6th frame)
+    const keyframeIndices = [];
+    for (let i = 0; i < TOTAL_FRAMES; i += 6) {
+      if (i !== 0) keyframeIndices.push(i);
     }
-    await Promise.all(loadPromises);
+    // Also include the last frame
+    if (!keyframeIndices.includes(TOTAL_FRAMES - 1)) {
+      keyframeIndices.push(TOTAL_FRAMES - 1);
+    }
 
-    state.images = state.images.filter(Boolean);
-    state.isReady = state.images.length > 0;
-    state.currentFrame = 0;
+    const CONCURRENCY = 16;
+    async function processPool(indices) {
+      let idx = 0;
+      async function worker() {
+        while (idx < indices.length) {
+          const current = indices[idx++];
+          if (!state.images[current]) {
+            await loadSingleFrame(FRAME_SOURCES[current], current);
+          }
+        }
+      }
+      const workers = Array.from({ length: CONCURRENCY }, () => worker());
+      await Promise.all(workers);
+    }
 
+    // Load keyframes first
+    await processPool(keyframeIndices);
+
+    // Dismiss preloader once keyframes are available
     setTimeout(() => {
       if (loader) loader.classList.add("hidden");
-    }, 300);
+    }, 250);
 
-    requestCanvasDraw(true);
     initTimeline();
+
+    // Step 3: Concurrently load all remaining frames in the background
+    const remainingIndices = [];
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      if (!state.images[i]) remainingIndices.push(i);
+    }
+    await processPool(remainingIndices);
   }
 
   /* ============================================================
-     6. THREE.JS 3D FLOWING SILK & GOLD PARTICLES WEBGL
+     6. SCROLL PROGRESSION ORCHESTRATION
   ============================================================ */
-  let silkScene, silkCamera, silkRenderer, silkMesh, threeParticles;
+  /* ============================================================
+     6. SCROLL PROGRESSION ORCHESTRATION & DWELL STOPS
+     - Stop 1: Frame 177 (0to10/ezgif-frame-177.jpg) [Progress 0.18 -> 0.23] (index 176)
+     - Stop 2: Frame 299 (0to10/ezgif-frame-299.jpg) [Progress 0.35 -> 0.40] (index 298)
+     - Stop 3: Frame 009 in 20to27 (20to27/ezgif-frame-009.jpg) [Progress 0.68 -> 0.73] (index 608)
+  ============================================================ */
+  function mapProgressToFrame(p) {
+    if (p <= 0) return 0;
+    if (p >= 1) return TOTAL_FRAMES - 1;
 
-  function initThreeSilk() {
-    const container = $("silkThreeCanvas");
-    if (!container || !window.THREE) return;
-
-    silkScene = new THREE.Scene();
-    silkCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    silkCamera.position.z = 5;
-
-    silkRenderer = new THREE.WebGLRenderer({ canvas: container, alpha: true, antialias: true });
-    silkRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    silkRenderer.setSize(window.innerWidth, window.innerHeight);
-
-    const silkGeo = new THREE.PlaneGeometry(12, 8, 48, 48);
-    const silkMat = new THREE.MeshStandardMaterial({
-      color: 0xb8925a,
-      roughness: 0.28,
-      metalness: 0.85,
-      side: THREE.DoubleSide
-    });
-
-    silkMesh = new THREE.Mesh(silkGeo, silkMat);
-    silkMesh.rotation.x = -0.35;
-    silkScene.add(silkMesh);
-
-    const ambLight = new THREE.AmbientLight(0x4a1522, 1.8);
-    silkScene.add(ambLight);
-
-    const dirLight1 = new THREE.DirectionalLight(0xf3d493, 2.5);
-    dirLight1.position.set(5, 5, 4);
-    silkScene.add(dirLight1);
-
-    const dirLight2 = new THREE.DirectionalLight(0x8d6935, 1.5);
-    dirLight2.position.set(-5, -3, 3);
-    silkScene.add(dirLight2);
-
-    const pCount = window.innerWidth < 768 ? 140 : 320;
-    const pGeo = new THREE.BufferGeometry();
-    const posArr = new Float32Array(pCount * 3);
-
-    for (let i = 0; i < pCount * 3; i += 3) {
-      posArr[i] = (Math.random() - 0.5) * 14;
-      posArr[i + 1] = (Math.random() - 0.5) * 10;
-      posArr[i + 2] = (Math.random() - 0.5) * 8;
+    // Segment 1: Progress 0.00 -> 0.18 => Frames 0 -> 176 (0to10/ezgif-frame-177.jpg)
+    if (p < 0.18) {
+      return Math.round((p / 0.18) * 176);
     }
-    pGeo.setAttribute("position", new THREE.BufferAttribute(posArr, 3));
-
-    const pMat = new THREE.PointsMaterial({
-      size: 0.045,
-      color: 0xd4af37,
-      transparent: true,
-      opacity: 0.85
-    });
-
-    threeParticles = new THREE.Points(pGeo, pMat);
-    silkScene.add(threeParticles);
-
-    let clock = new THREE.Clock();
-    function animateThree() {
-      requestAnimationFrame(animateThree);
-      const time = clock.getElapsedTime();
-
-      if (silkMesh) {
-        const pos = silkMesh.geometry.attributes.position;
-        for (let i = 0; i < pos.count; i++) {
-          const u = pos.getX(i);
-          const v = pos.getY(i);
-          const z = Math.sin(u * 0.8 + time * 1.5) * 0.45 + Math.cos(v * 0.9 + time * 1.2) * 0.35;
-          pos.setZ(i, z);
-        }
-        pos.needsUpdate = true;
-        silkMesh.rotation.z = Math.sin(time * 0.2) * 0.05;
-      }
-
-      if (threeParticles) {
-        threeParticles.rotation.y = time * 0.04;
-        threeParticles.rotation.x = Math.sin(time * 0.03) * 0.02;
-      }
-
-      silkRenderer.render(silkScene, silkCamera);
+    // STOP 1 PLATEAU: Progress 0.18 -> 0.23 => HOLD on Frame 177 (index 176)
+    if (p <= 0.23) {
+      return 176;
     }
-    animateThree();
-
-    window.addEventListener("resize", () => {
-      if (!silkCamera || !silkRenderer) return;
-      silkCamera.aspect = window.innerWidth / window.innerHeight;
-      silkCamera.updateProjectionMatrix();
-      silkRenderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    // Segment 2: Progress 0.23 -> 0.35 => Frames 176 -> 298 (0to10/ezgif-frame-299.jpg)
+    if (p < 0.35) {
+      const segT = (p - 0.23) / (0.35 - 0.23);
+      return Math.round(176 + segT * (298 - 176));
+    }
+    // STOP 2 PLATEAU: Progress 0.35 -> 0.40 => HOLD on Frame 299 (index 298)
+    if (p <= 0.40) {
+      return 298;
+    }
+    // Segment 3: Progress 0.40 -> 0.68 => Frames 298 -> 608 (20to27/ezgif-frame-009.jpg)
+    if (p < 0.68) {
+      const segT = (p - 0.40) / (0.68 - 0.40);
+      return Math.round(298 + segT * (608 - 298));
+    }
+    // STOP 3 PLATEAU: Progress 0.68 -> 0.73 => HOLD on Frame 608 (20to27/ezgif-frame-009.jpg)
+    if (p <= 0.73) {
+      return 608;
+    }
+    // Segment 4: Progress 0.73 -> 1.00 => Frames 608 -> 811 (End of sequence)
+    const segT = (p - 0.73) / (1.00 - 0.73);
+    return Math.round(608 + segT * (TOTAL_FRAMES - 1 - 608));
   }
 
-  /* ============================================================
-     7. SCROLL PROGRESSION & TIMELINE ORCHESTRATION
-  ============================================================ */
   function applyCinematicProgress(progress) {
     state.progress = window.gsap
       ? gsap.utils.clamp(0, 1, progress)
       : Math.max(0, Math.min(1, progress));
 
-    if (state.images.length > 0) {
-      state.currentFrame = Math.round(state.progress * (state.images.length - 1));
-      requestCanvasDraw();
-    }
+    // Map scroll progress to 812 frames with 3 deliberate stops
+    state.currentFrame = mapProgressToFrame(state.progress);
+    requestCanvasDraw();
 
-    // 1. SCENE 01: Landing Card Departure (0% to 15%)
+    // 1. SCENE 01: Landing Greeting Card (0% to 12%)
     if (sceneCard) {
-      const cardProgress = Math.min(1, state.progress / 0.15);
+      const cardProgress = Math.min(1, state.progress / 0.12);
       const cardOpacity = 1 - cardProgress;
-      const cardScale = 1 + cardProgress * 0.06;
-      const cardY = -cardProgress * 40;
+      const cardScale = 1 + cardProgress * 0.05;
+      const cardY = -cardProgress * 30;
       sceneCard.style.opacity = cardOpacity.toFixed(3);
       sceneCard.style.transform = `scale(${cardScale.toFixed(3)}) translateY(${cardY.toFixed(1)}px)`;
-      sceneCard.style.pointerEvents = cardProgress > 0.8 ? "none" : "auto";
+      sceneCard.style.pointerEvents = cardProgress > 0.85 ? "none" : "auto";
     }
 
-    // 2. SCENE 02-06: Model Canvas in Dream World Reveal & Journey (10% to 92%)
+    // 2. SCENE 02: Canvas Viewport (active from 4% to 100%)
     if (sceneCanvasView) {
-      const canvasOpacity = state.progress < 0.08 ? 0 : Math.min(1, (state.progress - 0.08) / 0.08);
-      const canvasFadeOut = state.progress > 0.92 ? 1 - (state.progress - 0.92) / 0.08 : 1;
-      sceneCanvasView.style.opacity = (canvasOpacity * canvasFadeOut).toFixed(3);
+      const canvasIn = state.progress < 0.04 ? 0 : Math.min(1, (state.progress - 0.04) / 0.05);
+      sceneCanvasView.style.opacity = canvasIn.toFixed(3);
     }
 
-    // 3. Sparkles Twinkle & Dream Cloud Drift Modulation
+    // 3. Sparkles & Zari Dust Floating Field (15% to 85%)
     if (sparklesContainer) {
-      const spStart = 0.12, spEnd = 0.88;
+      const spStart = 0.14, spEnd = 0.86;
       let spOp = 0;
       if (state.progress >= spStart && state.progress <= spEnd) {
         const mid = (spStart + spEnd) / 2;
-        spOp = state.progress < mid ? (state.progress - spStart) / (mid - spStart) : (spEnd - state.progress) / (spEnd - mid);
+        spOp = state.progress < mid
+          ? (state.progress - spStart) / (mid - spStart)
+          : (spEnd - state.progress) / (spEnd - mid);
       }
       sparklesContainer.style.opacity = spOp.toFixed(3);
     }
 
-    // 4. Journey Overlay Caption (25% to 60%)
-    if (journeyCaption) {
-      const start = 0.22, end = 0.62;
-      let capOp = 0;
-      if (state.progress >= start && state.progress <= end) {
-        const mid = (start + end) / 2;
-        capOp = state.progress < mid ? (state.progress - start) / (mid - start) : (end - state.progress) / (end - mid);
-      }
-      journeyCaption.style.opacity = capOp.toFixed(3);
-      journeyCaption.style.transform = `translateY(${((1 - capOp) * 18).toFixed(1)}px)`;
-    }
-
-    // 5. Gold Particles Dispersion (35% to 85%)
     if (particlesLayer) {
-      const pStart = 0.28, pEnd = 0.88;
+      const pStart = 0.18, pEnd = 0.88;
       let pOp = 0;
       if (state.progress >= pStart && state.progress <= pEnd) {
         const pMid = (pStart + pEnd) / 2;
-        pOp = state.progress < pMid ? (state.progress - pStart) / (pMid - pStart) : (pEnd - state.progress) / (pEnd - pMid);
+        pOp = state.progress < pMid
+          ? (state.progress - pStart) / (pMid - pStart)
+          : (pEnd - state.progress) / (pEnd - pMid);
       }
       particlesLayer.style.opacity = pOp.toFixed(3);
     }
 
-    // 6. Eye Darken Lighting Focus (75% to 92%)
-    if (eyeDarken) {
-      const eyeDarkenProg = state.progress < 0.72 ? 0 : Math.min(0.94, (state.progress - 0.72) / 0.18);
-      eyeDarken.style.opacity = eyeDarkenProg.toFixed(3);
+    // 4. Floating Story Journey Caption ("Enter through silk. Every thread weaves a 1000 years of heritage")
+    // Aligned to lead directly up into Frame 177 stop
+    if (journeyCaption) {
+      const fadeInStart = 0.04;   // starts fading in early
+      const fadeInEnd = 0.10;     // reaches 100% full opacity
+      const fadeOutStart = 0.17;  // holds through approach to Stop 1 (Frame 177)
+      const fadeOutEnd = 0.22;    // dissolves during Frame 177 hold
+
+      let capOp = 0;
+      if (state.progress >= fadeInStart && state.progress < fadeInEnd) {
+        capOp = (state.progress - fadeInStart) / (fadeInEnd - fadeInStart);
+      } else if (state.progress >= fadeInEnd && state.progress <= fadeOutStart) {
+        capOp = 1; // 100% fully visible plateau
+      } else if (state.progress > fadeOutStart && state.progress <= fadeOutEnd) {
+        capOp = 1 - (state.progress - fadeOutStart) / (fadeOutEnd - fadeOutStart);
+      } else {
+        capOp = 0;
+      }
+
+      journeyCaption.style.opacity = capOp.toFixed(3);
+      journeyCaption.style.transform = `translateY(${((1 - capOp) * 16).toFixed(1)}px)`;
     }
 
-    // 7. SCENE 07: Three.js Silk Flow Layer (84% to 100%)
-    if (sceneSilkWebGL) {
-      const silkProg = state.progress < 0.84 ? 0 : Math.min(1, (state.progress - 0.84) / 0.12);
-      sceneSilkWebGL.style.opacity = silkProg.toFixed(3);
+    // 5. SCENE 02 CARD OVERLAY: The Korvai Technique ("Two Hearts, One Rhythm")
+    // Appears swiftly after Stop 1 and fades out much sooner
+    if (sceneKorvaiOverlay) {
+      const korvaiStart = 0.235;  // starts fading in after Stop 1
+      const korvaiIn = 0.255;     // reaches 100% full opacity quickly
+      const korvaiOutStart = 0.275;// starts fading out much sooner
+      const korvaiEnd = 0.298;    // fully dissolved by 0.298
+
+      let kOp = 0;
+      if (state.progress >= korvaiStart && state.progress < korvaiIn) {
+        kOp = (state.progress - korvaiStart) / (korvaiIn - korvaiStart);
+      } else if (state.progress >= korvaiIn && state.progress <= korvaiOutStart) {
+        kOp = 1; // 100% fully visible plateau
+      } else if (state.progress > korvaiOutStart && state.progress <= korvaiEnd) {
+        kOp = 1 - (state.progress - korvaiOutStart) / (korvaiEnd - korvaiOutStart);
+      } else {
+        kOp = 0;
+      }
+
+      sceneKorvaiOverlay.style.opacity = kOp.toFixed(3);
+      sceneKorvaiOverlay.style.pointerEvents = kOp > 0.5 ? "auto" : "none";
+      sceneKorvaiOverlay.classList.toggle("active", kOp > 0.5);
+
+      const korvaiCard = $("korvaiCard");
+      if (korvaiCard && kOp > 0) {
+        const localNorm = (state.progress - korvaiStart) / (korvaiEnd - korvaiStart);
+        const shiftY = (localNorm * 28) - 14;
+        korvaiCard.style.transform = `translateY(${-shiftY.toFixed(1)}px)`;
+      }
     }
 
-    // 8. Eye Portal Expansion Veil (84% to 100%)
-    if (eyePortal) {
-      const portalProg = state.progress < 0.82 ? 0 : Math.min(1, (state.progress - 0.82) / 0.18);
-      const easedRadius = 1 - Math.pow(1 - portalProg, 3);
-      const radiusPct = (easedRadius * 155).toFixed(1);
-      const ex = (state.eyeScreenX * 100).toFixed(2);
-      const ey = (state.eyeScreenY * 100).toFixed(2);
+    // 6. SCENE 03 CARD OVERLAY: Pure Gold Zari (10to20 Frame 001 to 130)
+    // Appears after Stop 2 (Frame 299) and finishes before Stop 3 (20to27 Frame 009)
+    if (sceneZariOverlay) {
+      const zStart = 0.405;   // right after Stop 2 (Frame 299)
+      const zIn = 0.450;      // reaches 100% full opacity
+      const zOutStart = 0.530;// holds 100% solid through Frame 130
+      const zEnd = 0.590;     // dissolves smoothly before Stop 3 at Frame 608
 
-      eyePortal.style.opacity = portalProg > 0 ? "1" : "0";
-      eyePortal.style.clipPath = `circle(${radiusPct}% at ${ex}% ${ey}%)`;
+      let zOp = 0;
+      if (state.progress >= zStart && state.progress < zIn) {
+        zOp = (state.progress - zStart) / (zIn - zStart);
+      } else if (state.progress >= zIn && state.progress <= zOutStart) {
+        zOp = 1; // 100% fully visible plateau
+      } else if (state.progress > zOutStart && state.progress <= zEnd) {
+        zOp = 1 - (state.progress - zOutStart) / (zEnd - zOutStart);
+      } else {
+        zOp = 0;
+      }
+
+      sceneZariOverlay.style.opacity = zOp.toFixed(3);
+      sceneZariOverlay.style.pointerEvents = zOp > 0.5 ? "auto" : "none";
+      sceneZariOverlay.classList.toggle("active", zOp > 0.5);
+
+      const zariCard = $("zariCard");
+      if (zariCard && zOp > 0) {
+        const localNorm = (state.progress - zStart) / (zEnd - zStart);
+        const shiftY = (localNorm * 36) - 18;
+        zariCard.style.transform = `translateY(${-shiftY.toFixed(1)}px)`;
+      }
     }
   }
 
   /* ============================================================
-     8. GSAP SCROLLTRIGGER SETUP
+     7. GSAP SCROLLTRIGGER TIMELINE INITIALIZATION
   ============================================================ */
   function initTimeline() {
     if (isReducedMotion || !window.gsap || !window.ScrollTrigger) {
@@ -463,10 +486,11 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Animate golden sparkles
     sparkleElements.forEach((item) => {
       gsap.to(item.el, {
-        opacity: 0.9,
-        scale: item.baseScale * 1.3,
+        opacity: 0.85,
+        scale: item.baseScale * 1.35,
         rotation: 45,
         duration: item.speed,
         repeat: -1,
@@ -476,12 +500,13 @@
       });
     });
 
+    // Animate gold dust particles
     domParticles.forEach((p) => {
       gsap.to(p, {
-        y: -60 - Math.random() * 120,
-        x: (Math.random() - 0.5) * 60,
-        opacity: 0.4 + Math.random() * 0.6,
-        duration: 3.5 + Math.random() * 3.5,
+        y: -50 - Math.random() * 100,
+        x: (Math.random() - 0.5) * 50,
+        opacity: 0.35 + Math.random() * 0.65,
+        duration: 3 + Math.random() * 3,
         repeat: -1,
         delay: Math.random() * 3,
         ease: "sine.inOut",
@@ -489,13 +514,28 @@
       });
     });
 
+    // Pinned Sequence ScrollTrigger with Magnetic Stops at Frame 177, Frame 299 & 20to27 Frame 009
     ScrollTrigger.create({
       trigger: "#cinematic",
       start: "top top",
-      end: `+=${CONFIG.scrollDistance}`,
+      end: `+=${SCROLL_DISTANCE}`,
       pin: true,
       pinSpacing: true,
-      scrub: 0.65,
+      scrub: 0.5,
+      snap: {
+        snapTo: (value) => {
+          const stop1 = 0.205; // Frame 177 (0to10/ezgif-frame-177.jpg)
+          const stop2 = 0.375; // Frame 299 (0to10/ezgif-frame-299.jpg)
+          const stop3 = 0.705; // Frame 009 in 20to27 (20to27/ezgif-frame-009.jpg)
+          if (Math.abs(value - stop1) < 0.045) return stop1;
+          if (Math.abs(value - stop2) < 0.045) return stop2;
+          if (Math.abs(value - stop3) < 0.045) return stop3;
+          return value;
+        },
+        duration: { min: 0.2, max: 0.5 },
+        delay: 0.06,
+        ease: "power2.out"
+      },
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => applyCinematicProgress(self.progress),
@@ -503,6 +543,7 @@
       onEnterBack: () => applyCinematicProgress(0.999)
     });
 
+    // Editorial Scroll Reveal Animations for Main Website
     gsap.utils.toArray(".reveal-on-scroll").forEach((el) => {
       gsap.to(el, {
         opacity: 1,
@@ -536,7 +577,7 @@
   }
 
   /* ============================================================
-     9. 3D PERSPECTIVE CARD TILT & SAREE LIGHTBOX MODAL
+     8. 3D PERSPECTIVE CARD TILT & SAREE LIGHTBOX MODAL
   ============================================================ */
   function initCardTilt() {
     if (isTouch) return;
@@ -553,7 +594,7 @@
     });
   }
 
-  // Saree Modal Logic
+  // Saree Modal Lightbox
   const sareeModal = $("sareeModal");
   const modalImg = $("modalImg");
   const modalTitle = $("modalTitle");
@@ -599,7 +640,7 @@
   if (modalBackdrop) modalBackdrop.addEventListener("click", closeSareeModal);
 
   /* ============================================================
-     10. INTERACTIVE WEAVE FILTER TABS
+     9. INTERACTIVE WEAVE FILTER TABS
   ============================================================ */
   function initWeaveFilter() {
     const tabs = document.querySelectorAll(".filter-btn, .glass-tab");
@@ -621,7 +662,7 @@
           if (filterVal === "all" || cat === filterVal) {
             card.style.display = "flex";
             if (window.gsap) {
-              gsap.fromTo(card, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" });
+              gsap.fromTo(card, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" });
             }
           } else {
             card.style.display = "none";
@@ -634,7 +675,7 @@
   }
 
   /* ============================================================
-     11. VIRTUAL VIDEO SHOPPING BOOKING MODAL
+     10. VIRTUAL VIDEO SHOPPING BOOKING MODAL
   ============================================================ */
   function initVideoBookingModal() {
     const videoModal = $("videoBookingModal");
@@ -700,7 +741,7 @@
   }
 
   /* ============================================================
-     12. CUSTOM CURSOR & NAVIGATION INTERACTIONS
+     11. CUSTOM CURSOR & NAVIGATION INTERACTIONS
   ============================================================ */
   if (!isTouch) {
     const dot = document.querySelector(".cursor-dot");
@@ -761,12 +802,27 @@
   });
 
   /* ============================================================
-     13. INITIALIZATION
+     12. INITIALIZATION & RESPONSIVE RESIZE HANDLING
   ============================================================ */
-  window.addEventListener("resize", resizeSequenceCanvas, { passive: true });
+  let resizeTimer;
+  function handleWindowResize() {
+    resizeSequenceCanvas();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }, 150);
+  }
+
+  window.addEventListener("resize", handleWindowResize, { passive: true });
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      resizeSequenceCanvas();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }, 200);
+  });
+
   resizeSequenceCanvas();
   drawFallbackGradient();
-  initThreeSilk();
   preloadFrameSequence();
 
 })();
